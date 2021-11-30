@@ -4,9 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name') }} | Dashboard</title>
+    <title>{{ config('app.name') }} | @yield('title')</title>
 
-    @include('layouts.css')
+    @include('layouts.partials.css')
+    @yield('stylesheets')
+
+    @stack('page_css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -14,8 +17,8 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="adminlte/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-                width="60">
+            <img class="animation__shake" src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo"
+                height="60" width="60">
         </div>
 
         <!-- Navbar -->
@@ -56,15 +59,15 @@
 
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="adminlte/dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2"
-                            alt="User Image">
+                        <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}"
+                            class="user-image img-circle elevation-2" alt="User Image">
                         <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                                alt="User Image">
+                            <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}"
+                                class="img-circle elevation-2" alt="User Image">
 
                             <p>
                                 {{ Auth::user()->name }} - Web Developer
@@ -94,11 +97,11 @@
         <!-- /.navbar -->
 
         <!-- Left side column. contains the logo and sidebar -->
-        @include('layouts.sidebar')
+        @include('layouts.partials.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @include('layouts.header')
+            @include('layouts.partials.header')
 
             <!-- Main content -->
             <section class="content">
@@ -125,7 +128,12 @@
     </div>
     <!-- ./wrapper -->
 
-    @include('layouts.js')
+    @include('layouts.partials.js')
+    @include('sweetalert::alert')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    @yield('scripts')
+
+    @stack('page_scripts')
 </body>
 
 </html>
