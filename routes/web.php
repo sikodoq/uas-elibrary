@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,30 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// route resource users
+Route::resource('users', App\Http\Controllers\UserController::class)->middleware('auth');
+
+// route resource books
+Route::resource('books', App\Http\Controllers\BookController::class);
+
+// route resource authors
+Route::resource('authors', App\Http\Controllers\AuthorController::class)->middleware('auth');
+
+// route resource categories
+Route::resource('categories', App\Http\Controllers\CategoryController::class);
+
+// route resource publishers
+Route::resource('publishers', App\Http\Controllers\PublisherController::class);
+
+// route resource transactions
+Route::resource('transactions', App\Http\Controllers\TransactionController::class);
+
+// route resource transactions
+Route::get('transactions/{transaction}/borrow', [App\Http\Controllers\TransactionController::class, 'borrow'])->name('transactions.borrow');
+
+// route resource transactions
+Route::get('transactions/{transaction}/return', [App\Http\Controllers\TransactionController::class, 'return'])->name('transactions.return');
+
+// route resource transactions
+Route::get('transactions/{transaction}/borrow-return', [App\Http\Controllers\TransactionController::class, 'borrowReturn'])->name('transactions.borrow-return');
