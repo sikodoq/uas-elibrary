@@ -46,7 +46,7 @@
                                                 class="fas fa-pencil-alt">
                                             </i> Edit</a>
                                         <button class="btn btn-danger btn-sm" aria-label="Delete" type="submit"
-                                            onclick="deleteAlert('{{ $user->id }}', 'Menghapus User {{ $user->name }}')"><i
+                                            onclick="deleteAlert('{{ $user->id }}', 'Delete User {{ $user->name }}')"><i
                                                 class="fas fa-trash">
                                             </i> Delete</button>
                                         <form action="{{ route('users.destroy', $user->id) }}" method="POST"
@@ -100,10 +100,11 @@
     <script>
         $(function() {
             $("#example1").DataTable({
+                "paging": true,
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "buttons": ["pageLength", "copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,

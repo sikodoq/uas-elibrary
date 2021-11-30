@@ -49,7 +49,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                         <a href="{{ route('users.index') }}" class="btn btn-danger">Back</a>
                     </div>
                 </form>
@@ -68,8 +68,8 @@
 
 @section('scripts')
     <!-- jquery-validation -->
-    <script src="adminlte/plugins/jquery-validation/jquery.validate.min.js"></script>
-    <script src="adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+    <script src="{{ asset('adminlte') }}/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="{{ asset('adminlte') }}/plugins/jquery-validation/additional-methods.min.js"></script>
 @endsection
 
 @push('page_scripts')
