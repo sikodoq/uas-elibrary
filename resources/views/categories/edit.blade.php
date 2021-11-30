@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Edit Author')
-@section('header', 'Edit Author')
-@section('menu', 'Edit Author')
+@section('title', 'Edit Category')
+@section('header', 'Edit Category')
+@section('menu', 'Edit Category')
 
 @section('content')
     <div class="row">
@@ -10,34 +10,24 @@
             <!-- jquery validation -->
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">{{ __('Edit Data Author') }}</h3>
+                    <h3 class="card-title">{{ __('Edit Data Category') }}</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form id="quickForm" action="{{ route('authors.update', $author->id) }}" method="post">
+                <form id="quickForm" action="{{ route('categories.update', $category->id) }}" method="post">
                     @method('patch')
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input value="{{ $author->name }}" type="text" name="name" class="form-control" id="name"
+                            <label for="name">Category Name</label>
+                            <input value="{{ $category->name }}" type="text" name="name" class="form-control" id="name"
                                 placeholder="Enter name" autofocus>
-                        </div>
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input value="{{ $author->city }}" type="text" name="city" class="form-control id=" name"
-                                placeholder="Enter City" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="country">Country</label>
-                            <input value="{{ $author->country }}" type="text" name="country" class="form-control id="
-                                name" placeholder="Enter Country" required>
                         </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Update</button>
-                        <a href="{{ route('authors.index') }}" class="btn btn-danger">Back</a>
+                        <a href="{{ route('categories.index') }}" class="btn btn-danger">Back</a>
                     </div>
                 </form>
             </div>
@@ -67,28 +57,12 @@
                         required: true,
                         minlength: 3
                     },
-                    city: {
-                        required: true,
-                        minlength: 3
-                    },
-                    country: {
-                        required: true,
-                        minlength: 3
-                    }
                 },
                 messages: {
                     name: {
-                        required: "Please enter a name",
-                        minlength: "Your name must consist of at least 3 characters"
+                        required: "Please enter a category name",
+                        minlength: "Category name must be at least 3 characters"
                     },
-                    city: {
-                        required: "Please enter a city",
-                        minlength: "Your city must consist of at least 3 characters"
-                    },
-                    country: {
-                        required: "Please enter a country",
-                        minlength: "Your country must consist of at least 3 characters"
-                    }
                 },
                 errorElement: 'span',
                 errorPlacement: function(error, element) {
@@ -104,7 +78,6 @@
             });
         });
     </script>
-
 @endpush
 
 @endsection

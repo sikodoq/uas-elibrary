@@ -20,3 +20,9 @@
         <p>Author</p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="/categories" class="nav-link {{ Request::is('categories*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-book-open"></i>
+        <p>Category</p>
+    </a>
+</li>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Add Author')
-@section('header', 'Add Author')
-@section('menu', 'Add Author')
+@section('title', 'Add Category')
+@section('header', 'Add Category')
+@section('menu', 'Add Category')
 
 @section('content')
     <div class="row">
@@ -10,33 +10,30 @@
             <!-- jquery validation -->
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">{{ __('Entry Data Author') }}</h3>
+                    <h3 class="card-title">{{ __('Entry Data Category') }}</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form id="quickForm" action="{{ route('authors.store') }}" method="post">
+                <form id="quickForm" action="{{ route('categories.store') }}" method="post">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input value="{{ old('name') }}" type="text" name="name" class="form-control" id="name"
-                                placeholder="Enter Author Name" required autofocus>
-                        </div>
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input value="{{ old('city') }}" type="text" name="city" class="form-control" id="city"
-                                placeholder="Enter City" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="country">Country</label>
-                            <input value="{{ old('country') }}" type="text" name="country" class="form-control"
-                                id="country" placeholder="Enter Country" required>
+                            <label for="name">Category Name</label>
+                            <input value="{{ old('name') }}" type="text" name="name"
+                                class="form-control @error('name') is-invalid @enderror" id="name"
+                                placeholder="Enter Category Name" required autofocus>
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
+
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <a href="{{ route('authors.index') }}" class="btn btn-danger">Back</a>
+                        <a href="{{ route('categories.index') }}" class="btn btn-danger">Back</a>
                     </div>
                 </form>
             </div>
@@ -67,28 +64,12 @@
                         required: true,
                         minlength: 3
                     },
-                    city: {
-                        required: true,
-                        minlength: 3
-                    },
-                    country: {
-                        required: true,
-                        minlength: 3
-                    }
                 },
                 messages: {
                     name: {
-                        required: "Please enter a name",
-                        minlength: "Your name must consist of at least 3 characters"
+                        required: "Please enter a category name",
+                        minlength: "Category name must consist of at least 3 characters"
                     },
-                    city: {
-                        required: "Please enter a city",
-                        minlength: "Your city must consist of at least 3 characters"
-                    },
-                    country: {
-                        required: "Please enter a country",
-                        minlength: "Your country must consist of at least 3 characters"
-                    }
                 },
                 errorElement: 'span',
                 errorPlacement: function(error, element) {
