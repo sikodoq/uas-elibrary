@@ -36,7 +36,7 @@ Route::resource('authors', App\Http\Controllers\AuthorController::class)->middle
 Route::resource('categories', App\Http\Controllers\CategoryController::class)->middleware('auth');
 
 // route resource publishers
-// Route::resource('publishers', App\Http\Controllers\PublisherController::class);
+Route::resource('publishers', App\Http\Controllers\PublisherController::class);
 
 // route resource transactions
 // Route::resource('transactions', App\Http\Controllers\TransactionController::class);
