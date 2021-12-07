@@ -26,8 +26,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // route resource users
 Route::resource('users', App\Http\Controllers\UserController::class)->middleware('auth');
 
+// route resource members
+Route::resource('members', App\Http\Controllers\MemberController::class)->middleware('auth');
+
 // route resource books
-Route::resource('books', App\Http\Controllers\BookController::class);
+Route::resource('books', App\Http\Controllers\BookController::class)->middleware('auth');
 
 // route resource authors
 Route::resource('authors', App\Http\Controllers\AuthorController::class)->middleware('auth');
@@ -36,7 +39,7 @@ Route::resource('authors', App\Http\Controllers\AuthorController::class)->middle
 Route::resource('categories', App\Http\Controllers\CategoryController::class)->middleware('auth');
 
 // route resource publishers
-Route::resource('publishers', App\Http\Controllers\PublisherController::class);
+Route::resource('publishers', App\Http\Controllers\PublisherController::class)->middleware('auth');
 
 // route resource transactions
 // Route::resource('transactions', App\Http\Controllers\TransactionController::class);
