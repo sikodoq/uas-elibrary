@@ -35,8 +35,8 @@ class Book extends Model
         return $this->hasMany(Borrowing::class);
     }
 
-    // price book accessor
-    public function getPrice()
+    // price accessor
+    public function getBookPriceAttribute()
     {
         return 'Rp. ' . number_format($this->price, 0, ',', '.');
     }
@@ -44,6 +44,16 @@ class Book extends Model
     // img book accessor
     public function getImgAttribute()
     {
-        return asset('storage/' . $this->images);
+        return asset('storage/images/books/' . $this->image);
+    }
+
+    // book status accessor
+    public function getBookStatusAttribute()
+    {
+        if ($this->stock >= 1) {
+            return '<span class="badge badge-success">Available</span>';
+        } else {
+            return '<span class="badge badge-danger">Borrowed</span>';
+        }
     }
 }

@@ -16,8 +16,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 @if ($book->image)
-                                    <img src="{{ asset('storage/images/books/' . $book->image) }}"
-                                        alt="{{ $book->title }}" class="img-thumbnail">
+                                    <img src="{{ $book->Img }}" alt="{{ $book->title }}" class="img-thumbnail">
 
                                 @else
                                     <img src="{{ asset('storage/images/books/no-image.png') }}" alt="{{ $book->title }}"
@@ -44,18 +43,13 @@
                                     <strong>ISBN:</strong> {{ $book->isbn }}
                                 </p>
                                 <p>
-                                    <strong>Price:</strong> {{ $book->price }}
+                                    <strong>Price:</strong> {{ $book->BookPrice }}
                                 </p>
                                 <p>
                                     <strong>Stock:</strong> {{ $book->stock }}
                                 </p>
                                 <p>
-                                    <strong>Status:</strong>
-                                    @if ($book->stock > 0)
-                                        <span class="badge badge-success">Avaliable</span>
-                                    @else
-                                        <span class="badge badge-danger">Unvaliabe</span>
-                                    @endif
+                                    <strong>Status:</strong> {!! $book->BookStatus !!}
                                 </p>
                                 <p>
                                     <strong>Created At:</strong> {{ $book->created_at }}

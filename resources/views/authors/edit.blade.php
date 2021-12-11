@@ -25,13 +25,13 @@
                         </div>
                         <div class="form-group">
                             <label for="city">City</label>
-                            <input value="{{ $author->city }}" type="text" name="city" class="form-control id=" name"
+                            <input value="{{ $author->city }}" type="text" name="city" class="form-control" id="name"
                                 placeholder="Enter City" required>
                         </div>
                         <div class="form-group">
                             <label for="country">Country</label>
-                            <input value="{{ $author->country }}" type="text" name="country" class="form-control id="
-                                name" placeholder="Enter Country" required>
+                            <input value="{{ $author->country }}" type="text" name="country" class="form-control"
+                                id="name" placeholder="Enter Country" required>
                         </div>
                     </div>
                     <!-- /.card-body -->

@@ -40,10 +40,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         @if ($book->image)
-                                            <img src="{{ asset('storage/images/books/' . $book->image) }}"
-                                                alt="{{ $book->title }}" class="img-thumbnail" width="100px"
-                                                height="100px">
-
+                                            <img src="{{ $book->Img }}" alt="{{ $book->title }}" class="img-thumbnail"
+                                                width="100px" height="100px">
                                         @else
                                             <img src="{{ asset('storage/images/no-image.png') }}"
                                                 alt="{{ $book->title }}" class="img-thumbnail" width="100px"
@@ -54,13 +52,7 @@
                                     <td>{{ $book->title }}</td>
                                     <td>{{ $book->isbn }}</td>
                                     <td>{{ $book->stock }}</td>
-                                    <td>
-                                        @if ($book->stock > 0)
-                                            <span class="badge badge-success">Avaliable</span>
-                                        @else
-                                            <span class="badge badge-danger">Unvaliabe</span>
-                                        @endif
-                                    </td>
+                                    <td>{!! $book->BookStatus !!}</td>
                                     <td>
                                         <a href="{{ route('books.show', $book->id) }}" class="btn btn-info btn-sm"><i
                                                 class="fas fa-folder">

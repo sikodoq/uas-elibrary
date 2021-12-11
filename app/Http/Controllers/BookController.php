@@ -61,7 +61,7 @@ class BookController extends Controller
             // upload image
             $path = $request->file('image')->storeAs('public/images/books', $fileNameToStore);
         } else {
-            $fileNameToStore = 'no-image.png';
+            $fileNameToStore = null;
         }
 
         // update book with image
@@ -112,7 +112,6 @@ class BookController extends Controller
     {
         // update book
         $book->update($request->all());
-        // $book = Book::create($request->all());
 
         if ($request->hasFile('image')) {
             // get file name with extension
@@ -126,7 +125,7 @@ class BookController extends Controller
             // upload image
             $path = $request->file('image')->storeAs('public/images/books', $fileNameToStore);
         } else {
-            $fileNameToStore = 'no-image.png';
+            $fileNameToStore = null;
         }
         Alert::success('Success', 'Book has been updated successfully');
         return redirect()->route('books.index');
