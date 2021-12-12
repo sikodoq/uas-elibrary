@@ -14,30 +14,11 @@ class Member extends Model
     /* public function user()
     {
         return $this->belongsTo(User::class);
-    }
+    }   */
 
-    public function team()
+    //one student have one transaction
+    public function transaction()
     {
-        return $this->belongsTo(Team::class);
+        return $this->hasOne(Transaction::class);
     }
-
-    public function getNameAttribute()
-    {
-        return $this->user->name;
-    }
-
-    public function getEmailAttribute()
-    {
-        return $this->user->email;
-    }
-
-    public function getAvatarAttribute()
-    {
-        return $this->user->avatar;
-    }
-
-    public function getRoleAttribute()
-    {
-        return $this->team->role;
-    } */
 }

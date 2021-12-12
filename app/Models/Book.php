@@ -29,10 +29,10 @@ class Book extends Model
         return $this->belongsTo(Publisher::class);
     }
 
-    //one book have many borrowing
-    public function borrowing()
+    //one book have many transaction
+    public function transaction()
     {
-        return $this->hasMany(Borrowing::class);
+        return $this->hasMany(Transaction::class);
     }
 
     // price accessor

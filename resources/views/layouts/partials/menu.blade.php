@@ -5,23 +5,10 @@
         <p>Home</p>
     </a>
 </li>
-<li class="nav-item">
-    <a href="/members" class="nav-link {{ Request::is('members*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-user-tie"></i>
-        <p>Members</p>
-    </a>
-</li>
-<li class="nav-item">
-    <a href="/users" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-users"></i>
-        <p>Users</p>
-    </a>
-</li>
 {{-- treemenu book management --}}
 <li class="nav-item {{ Request::is('books*', 'authors*', 'categories*', 'publishers*') ? 'menu-open' : '' }}">
-    <a href="#"
-        class="nav-link {{ Request::is('books*', 'authors*', 'categories*', 'publishers*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-book"></i>
+    <a href="#" class="nav-link {{ Request::is('books*', 'authors*', 'categories*', 'publishers*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-book-medical"></i>
         <p>
             Book Management
             <i class="fas fa-angle-left right"></i>
@@ -48,28 +35,34 @@
         </li>
         <li class="nav-item">
             <a href="/publishers" class="nav-link {{ Request::is('publishers*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-book"></i>
+                <i class="nav-icon fas fa-id-card"></i>
                 <p>Publishers</p>
             </a>
         </li>
     </ul>
 </li>
 {{-- end treemenu book management --}}
-{{-- <li class="nav-item">
-    <a href="/borrowings" class="nav-link {{ Request::is('borrowings*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-book-reader"></i>
-        <p>Borrowing</p>
+<li class="nav-item">
+    <a href="/members" class="nav-link {{ Request::is('members*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-user-tie"></i>
+        <p>Members</p>
     </a>
 </li>
 <li class="nav-item">
-    <a href="/returns" class="nav-link {{ Request::is('returns*') ? 'active' : '' }}">
+    <a href="/transactions" class="nav-link {{ Request::is('transactions*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-book-reader"></i>
-        <p>Return</p>
+        <p>Transaction</p>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="/users" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-users"></i>
+        <p>Users</p>
     </a>
 </li>
 <li class="nav-item">
     <a href="/reports" class="nav-link {{ Request::is('reports*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-book-reader"></i>
+        <i class="nav-icon fas fa-file"></i>
         <p>Report</p>
     </a>
-</li> --}}
+</li>

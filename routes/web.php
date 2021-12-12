@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ use App\Http\Controllers\PublisherController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -51,7 +52,7 @@ Route::resource('categories', CategoryController::class)->middleware('auth');
 Route::resource('publishers', PublisherController::class)->middleware('auth');
 
 // route resource transactions
-// Route::resource('transactions', TransactionController::class);
+Route::resource('transactions', TransactionController::class)->middleware('auth');
 
 // route resource transactions
 // Route::get('transactions/{transaction}/borrow', [TransactionController::class, 'borrow'])->name('transactions.borrow');
