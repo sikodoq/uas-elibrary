@@ -36,4 +36,4 @@ Route::resource('books', BookController::class)->middleware('role:Admin&Operator
 Route::resource('authors', AuthorController::class)->middleware('role:Admin&Operator'); // route resource categories
 Route::resource('categories', CategoryController::class)->middleware('role:Admin&Operator'); // route resource publishers
 Route::resource('publishers', PublisherController::class)->middleware('role:Admin'); // route resource transactions
-Route::resource('transactions', TransactionController::class)->middleware('role:Admin&Operator'); // route resource transactions
+Route::resource('transactions', TransactionController::class)->middleware('role:Admin&Operator');
