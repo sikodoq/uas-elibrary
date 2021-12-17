@@ -28,37 +28,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-// route resource users
-Route::resource('users', UserController::class)->middleware('auth');
-
-// route resource members
-Route::resource('members', MemberController::class)->middleware('auth');
-
-// route change status member
-Route::get('changeStatus', [MemberController::class, 'changeStatus'])->name('changeStatus');
-
-// route resource books
-Route::resource('books', BookController::class)->middleware('auth');
-
-// route resource authors
-Route::resource('authors', AuthorController::class)->middleware('auth');
-
-// route resource categories
-Route::resource('categories', CategoryController::class)->middleware('auth');
-
-// route resource publishers
-Route::resource('publishers', PublisherController::class)->middleware('auth');
-
-// route resource transactions
-Route::resource('transactions', TransactionController::class)->middleware('auth');
-
-// route resource transactions
-// Route::get('transactions/{transaction}/borrow', [TransactionController::class, 'borrow'])->name('transactions.borrow');
-
-// route resource transactions
-// Route::get('transactions/{transaction}/return', [TransactionController::class, 'return'])->name('transactions.return');
-
-// route resource transactions
-// Route::get('transactions/{transaction}/borrow-return', [TransactionController::class, 'borrowReturn'])->name('transactions.borrow-return');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::resource('users', UserController::class)->middleware('role:Admin'); // route resource members
+Route::resource('members', MemberController::class)->middleware('role:Admin&Operator'); // route change status member
+Route::get('changeStatus', [MemberController::class, 'changeStatus'])->name('changeStatus')->middleware('role:Admin&Operator');; // route resource books
+Route::resource('books', BookController::class)->middleware('role:Admin&Operator'); // route resource authors
+Route::resource('authors', AuthorController::class)->middleware('role:Admin&Operator'); // route resource categories
+Route::resource('categories', CategoryController::class)->middleware('role:Admin&Operator'); // route resource publishers
+Route::resource('publishers', PublisherController::class)->middleware('role:Admin'); // route resource transactions
+Route::resource('transactions', TransactionController::class)->middleware('role:Admin&Operator');
