@@ -43,10 +43,10 @@ class TransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request)
     {
-        $sum = Book::findOrFail($request->book_id);
+        /* $sum = Book::findOrFail($request->book_id);
         Book::where('id', $request->book_id)->update([
             'stock' => $sum->stock - 1
-        ]);
+        ]); */
 
         Transaction::create($request->all());
         Alert::success('Success', 'Transaction has been added');

@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Author;
 use App\Models\Category;
 use App\Models\Publisher;
+use App\Models\Transaction;
 use App\Http\Requests\StoreBookRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateBookRequest;

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\User;
+use App\Models\Member;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +18,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        // $this->middleware('role:Admin');
     }
 
     /**
@@ -23,6 +28,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $books = Book::get();
+        $categories = [];
+        $data = [];
+        foreach ($books as $book) {
+            $borrow = Transaction::where('book_id', $book->id)->count();
+            $categories[] = $book->name;
+            $data[] = $borrow;
+        }
+        return view('home', [
+            'books' => Book::count(),
+            'transactions' => Transaction::count(),
+            'members' => Member::count(),
+            'users' => User::where('role', 'member')->count(),
+            'categories' => $categories,
+            'data' => $data
+        ]);
     }
 }

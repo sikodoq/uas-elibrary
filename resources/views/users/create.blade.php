@@ -19,28 +19,50 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input value="{{ old('name') }}" type="text" name="name" class="form-control" id="name"
-                                placeholder="Enter name" autofocus>
+                            <input value="{{ old('name') }}" type="text" name="name"
+                                class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Full Name">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input value="{{ old('email') }}" type="email" name="email" class="form-control" id="email"
-                                placeholder="Enter email">
+                            <input value="{{ old('email') }}" type="email" name="email"
+                                class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" id="password"
+                            <input type="password" name="password"
+                                class="form-control @error('password') is-invalid @enderror" id="password"
                                 placeholder="Password">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="password_confirmation">Password Confirmation</label>
-                            <input type="password" name="password_confirmation" class="form-control"
-                                id="password_confirmation" placeholder="Retype password">
+                            <input type="password" name="password_confirmation"
+                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                id="password_confirmation" placeholder="Password Confirmation">
+                            @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="role">Role</label>
-                            <select class="form-control" name="role" id="role">
-                                <option disabled selected>Chose Level</option>
+                            <select class="form-control @error('role') is-invalid @enderror" name="role" id="role">
+                                <option disabled selected>-- Select Role --</option>
                                 <option value="Member">Member</option>
                                 <option value="Operator">Operator</option>
                                 <option value="Admin">Admin</option>
@@ -73,51 +95,6 @@
 @endsection
 
 @push('page_scripts')
-    <script>
-        $(function() {
-            $.validator.setDefaults({
-                submitHandler: function() {
-                    alert("Form successful submitted!");
-                }
-            });
-            $('#quickForm').validate({
-                rules: {
-                    email: {
-                        required: true,
-                        email: true,
-                    },
-                    password: {
-                        required: true,
-                        minlength: 5
-                    },
-                    terms: {
-                        required: true
-                    },
-                },
-                messages: {
-                    email: {
-                        required: "Please enter a email address",
-                        email: "Please enter a vaild email address"
-                    },
-                    password: {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 5 characters long"
-                    },
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
-        });
-    </script>
 
 @endpush
 

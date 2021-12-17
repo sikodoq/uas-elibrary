@@ -42,9 +42,8 @@
                                     <td>{{ $transaction->book->title }}</td>
                                     <td>{{ $transaction->borrow_date }}</td>
                                     <td>{{ $transaction->return_date }}</td>
-                                    {{-- <td>{{ $transaction->ReturnDate }}</td> --}}
                                     <td>
-                                        <button class="btn btn-primary btn-sm" aria-label="Delete" type="submit"
+                                        {{-- <button class="btn btn-primary btn-sm" aria-label="Delete" type="submit"
                                             onclick="deleteAlert('{{ $transaction->id }}', 'Book Return {{ $transaction->title }}')"><i
                                                 class="fas fa-undo-alt">
                                             </i> Return</button>
@@ -52,7 +51,9 @@
                                             method="POST" class="d-inline" id="Delete{{ $transaction->id }}">
                                             @csrf
                                             @method('DELETE')
-                                        </form>
+                                        </form> --}}
+                                        <a href="{{ route('transactions.edit', $transaction->id) }}"
+                                            class="btn btn-primary btn-sm"><i class="fas fa-business-time"></i> Return</a>
                                         <a href="{{ route('transactions.edit', $transaction->id) }}"
                                             class="btn btn-success btn-sm"><i class="fas fa-business-time"></i> Extend</a>
 

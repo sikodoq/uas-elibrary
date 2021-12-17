@@ -50,10 +50,22 @@ class Book extends Model
     // book status accessor
     public function getBookStatusAttribute()
     {
-        if ($this->stock >= 1) {
+        if ($this->IsReturned >= 1) {
             return '<span class="badge badge-success">Available</span>';
         } else {
             return '<span class="badge badge-danger">Borrowed</span>';
+        }
+    }
+
+    // transactin is_returned accessor
+    public function getIsReturnedAttribute()
+    {
+        $transaction = Transaction::where('book_id', $this->id)->where('is_returned', 0)->count();
+        if ($transaction > 0) {
+            $stock =  $this->stock - $transaction;
+            return $stock;
+        } else {
+            return $this->stock;
         }
     }
 }

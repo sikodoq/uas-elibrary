@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->foreignId('book_id');
             $table->date('borrow_date');
             $table->date('return_date');
+            $table->boolean('is_returned')->default(false);
             $table->timestamps();
         });
     }

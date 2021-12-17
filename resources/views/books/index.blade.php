@@ -51,7 +51,8 @@
                                     <td>{{ $book->book_code }}</td>
                                     <td>{{ $book->title }}</td>
                                     <td>{{ $book->isbn }}</td>
-                                    <td>{{ $book->stock }}</td>
+                                    <td>{{ $book->IsReturned }}</td>
+                                    {{-- <td>{{ $book->stock }}</td> --}}
                                     <td>{!! $book->BookStatus !!}</td>
                                     <td>
                                         <a href="{{ route('books.show', $book->id) }}" class="btn btn-info btn-sm"><i

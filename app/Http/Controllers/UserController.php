@@ -8,6 +8,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
+    /* public function __construct()
+    {
+        $this->middleware('auth');
+    } */
     /**
      * Display a listing of the resource.
      *
@@ -52,7 +56,7 @@ class UserController extends Controller
             'role' => $request->role,
         ]);
 
-        Alert::success('Congrats', 'You\'ve Successfully Add New User');
+        Alert::success('Success', 'User Created Successfully');
         return redirect()->route('users.index', $user->id);
     }
 
@@ -90,14 +94,12 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:6|confirmed',
             'role' => 'required|string|max:255',
         ]);
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
             'role' => $request->role,
         ]);
 
