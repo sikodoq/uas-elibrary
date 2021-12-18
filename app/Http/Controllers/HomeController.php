@@ -30,19 +30,22 @@ class HomeController extends Controller
     {
         $books = Book::get();
         $categories = [];
-        $data = [];
+        $borrowed = [];
         foreach ($books as $book) {
-            $borrow = Transaction::where('book_id', $book->id)->count();
+            $borrow = Transaction::where('is_returned', 0)->count();
             $categories[] = $book->name;
-            $data[] = $borrow;
+            $borrowed[] = $borrow;
         }
+
         return view('home', [
             'books' => Book::count(),
             'transactions' => Transaction::count(),
+            'borrowed' => Transaction::where('is_returned', 0)->count(),
+            'returned' => Transaction::where('is_returned', 1)->count(),
             'members' => Member::count(),
             'users' => User::where('role', 'member')->count(),
             'categories' => $categories,
-            'data' => $data
+            'data' => $borrowed
         ]);
     }
 }
