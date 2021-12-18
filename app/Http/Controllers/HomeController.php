@@ -30,11 +30,14 @@ class HomeController extends Controller
     {
         $books = Book::get();
         $categories = [];
-        $borrowed = [];
+        $dataBorrow = [];
+        $dataReturn = [];
         foreach ($books as $book) {
             $borrow = Transaction::where('is_returned', 0)->count();
+            $return = Transaction::where('is_returned', 1)->count();
             $categories[] = $book->name;
-            $borrowed[] = $borrow;
+            $dataBorrow[] = $borrow;
+            $dataReturn[] = $return;
         }
 
         return view('home', [
@@ -45,7 +48,23 @@ class HomeController extends Controller
             'members' => Member::count(),
             'users' => User::where('role', 'member')->count(),
             'categories' => $categories,
-            'data' => $borrowed
+            'databorrow' => $dataBorrow,
+            'datareturn' => $dataReturn
         ]);
+        /* $borrow = Transaction::where('is_returned', 0)->count();
+        $return = Transaction::where('is_returned', 1)->count();
+        $member = Member::count();
+        $user = User::where('role', 'member')->count();
+        $book = Book::count();
+        $transaction = Transaction::count();
+        $data = [
+            'borrow' => $borrow,
+            'return' => $return,
+            'member' => $member,
+            'user' => $user,
+            'book' => $book,
+            'transaction' => $transaction
+        ];
+        return view('home', compact('data')); */
     }
 }
