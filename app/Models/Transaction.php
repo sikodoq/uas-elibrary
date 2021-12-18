@@ -22,4 +22,14 @@ class Transaction extends Model
     {
         return $this->belongsTo(Book::class);
     }
+
+    //Transaction Status Return accessor
+    public function getStatusAttribute($value)
+    {
+        if ($this->is_returned >= 1) {
+            return '<span class="badge badge-success">Returned</span>';
+        } else {
+            return '<span class="badge badge-danger">Borrowed</span>';
+        }
+    }
 }

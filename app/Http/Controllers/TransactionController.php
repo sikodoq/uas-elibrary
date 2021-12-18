@@ -110,4 +110,14 @@ class TransactionController extends Controller
         Alert::success('Success', 'Book Return Successfully');
         return redirect()->route('transactions.index');
     }
+
+    public function return(UpdateTransactionRequest $request, Transaction $transaction)
+    {
+        $transaction->update([
+            'is_returned' => $request->is_returned
+        ]);
+
+        Alert::success('Success', 'Transaction Updated Successfully');
+        return redirect()->route('transactions.index');
+    }
 }

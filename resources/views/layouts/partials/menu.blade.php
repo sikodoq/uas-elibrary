@@ -71,12 +71,12 @@
             </a>
         </li>
     @endif
-    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Operator')
+    {{-- @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Operator')
         <li class="nav-item">
             <a href="/reports" class="nav-link {{ Request::is('reports*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-file"></i>
                 <p>Report</p>
             </a>
         </li>
-    @endif
+    @endif --}}
 @endauth

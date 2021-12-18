@@ -28,9 +28,9 @@
                                 <th>Transaction Code</th>
                                 <th>Member Name</th>
                                 <th>Book Name</th>
-                                <th>Borrow Date</th>
                                 <th>Return Date</th>
-                                <th width="16%">Action</th>
+                                <th>Status</th>
+                                <th width="17%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,23 +40,29 @@
                                     <td>{{ $transaction->transaction_code }}</td>
                                     <td>{{ $transaction->member->name }}</td>
                                     <td>{{ $transaction->book->title }}</td>
-                                    <td>{{ $transaction->borrow_date }}</td>
                                     <td>{{ $transaction->return_date }}</td>
+                                    <td>{!! $transaction->status !!}</td>
                                     <td>
-                                        {{-- <button class="btn btn-primary btn-sm" aria-label="Delete" type="submit"
-                                            onclick="deleteAlert('{{ $transaction->id }}', 'Book Return {{ $transaction->title }}')"><i
-                                                class="fas fa-undo-alt">
-                                            </i> Return</button>
-                                        <form action="{{ route('transactions.destroy', $transaction->id) }}"
-                                            method="POST" class="d-inline" id="Delete{{ $transaction->id }}">
+                                        <form action="{{ route('transactions.return', $transaction->id) }}"
+                                            method="POST">
                                             @csrf
-                                            @method('DELETE')
-                                        </form> --}}
-                                        <a href="{{ route('transactions.edit', $transaction->id) }}"
-                                            class="btn btn-primary btn-sm"><i class="fas fa-business-time"></i> Return</a>
-                                        <a href="{{ route('transactions.edit', $transaction->id) }}"
-                                            class="btn btn-success btn-sm"><i class="fas fa-business-time"></i> Extend</a>
-
+                                            @method('PUT')
+                                            <input type="hidden" name="is_returned" value="1">
+                                            @if ($transaction->is_returned == 0)
+                                                <button type="submit" class="btn btn-success btn-sm" title="Return Book"><i
+                                                        class="nav-icon fas fa-check"></i>
+                                                    Return</button>
+                                            @else
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Return Book"
+                                                    disabled><i class="nav-icon fas fa-times"></i>
+                                                    Returned</button>
+                                            @endif
+                                            {{-- <button type="submit" class="btn btn-primary btn-sm" title="Returned"><i
+                                                    class="nav-icon fas fa-undo-alt"></i> Return</button> --}}
+                                            <a href="{{ route('transactions.edit', $transaction->id) }}"
+                                                class="btn btn-success btn-sm"><i class="fas fa-business-time"></i>
+                                                Extend</a>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -70,7 +76,7 @@
                                 <th>Book Name</th>
                                 <th>Borrow Date</th>
                                 <th>Return Date</th>
-                                <th width="16%">Action</th>
+                                <th width="17%">Action</th>
                             </tr>
                         </tfoot>
                     </table>
